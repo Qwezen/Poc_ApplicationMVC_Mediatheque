@@ -30,27 +30,25 @@ Une application web simple de gestion de médiathèque développée en PHP orien
 ##  Structure du projet
 
 /projet
-│
-├── /controllers
-│   ├── MediaController.php
-│   └── LivreController.php
-│
-├── /models
-│   ├── Media.php
-│   └── Livre.php
-|
-├── /views
-│   ├── dashboard
-│   ├── edit
-│   ├── show
-│   ├── login
-│   └── register
-│
-├── /assets
-│   └── /uploads
-│
-├── index.php       
-└── .htaccess       
+/controllers
+    MediaController.php
+    LivreController.php
+/models
+│ Media.php
+│ Livre.php
+
+/views
+│ dashboard
+│ edit
+│ show
+│ login
+│ register
+
+/assets
+│   /uploads
+
+index.php       
+.htaccess       
 
 
 
