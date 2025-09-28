@@ -1,7 +1,3 @@
-# Poc_ApplicationMVC_Mediatheque
-Poc d'une Application en structure MVC d'une Médiathèque en Php Orienté Objet.
-
-
 # Médiathèque PHP
 
 Une application web simple de gestion de médiathèque développée en PHP orienté objet avec architecture MVC. Elle permet de gérer des livres, films et albums, avec fonctionnalités d’emprunt, retour, ajout, modification et suppression.
@@ -42,14 +38,13 @@ Une application web simple de gestion de médiathèque développée en PHP orien
 ├── /models
 │   ├── Media.php
 │   └── Livre.php
-│
+|
 ├── /views
 │   ├── dashboard
 │   ├── edit
 │   ├── show
 │   ├── login
 │   └── register
-
 │
 ├── /assets
 │   └── /uploads
@@ -74,4 +69,5 @@ Une application web simple de gestion de médiathèque développée en PHP orien
 5. Lancer l’application via http://localhost/mediatheque/index.php
 
 Nom utilisateur : tintin
+
 Mdp : Milou1760*
