@@ -1,4 +1,5 @@
 <?php
+
 namespace Controllers;
 
 use Models\User;
@@ -26,7 +27,9 @@ class UserController
 
         if ($password !== $confirm) return ['error'=>'Les mots de passe ne correspondent pas.'];
 
+        /* Regex pour verifier le niveau sécurité du mot de passe */
         $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+
         if (!preg_match($pattern, $password)) {
             return ['error'=>'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.'];
         }
