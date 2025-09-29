@@ -21,6 +21,7 @@ use Controllers\MediaController;
 function setFlash(string $msg, string $type = 'success'): void {
     $_SESSION['flash'] = ['msg' => $msg, 'type' => $type];
 }
+
 function getFlash(): ?array {
     if (!empty($_SESSION['flash'])) {
         $flash = $_SESSION['flash'];
@@ -130,6 +131,22 @@ elseif ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($
     $mc->update((int)$_GET['id'], $_POST, $_FILES);
     setFlash("Média modifié avec succès !");
     redirectTo('action=dashboard');
+}
+elseif ($action === 'songs' && isset($_GET['album_id'])) {
+    if (empty($_SESSION['user_id'])) redirectTo('action=login');
+    $album = \Models\Album::getAlbumWithSongs((int)$_GET['album_id']);
+    require __DIR__ . '/views/songs.php';
+}
+elseif ($action === 'add_song' && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['album_id'])) {
+    if (empty($_SESSION['user_id'])) redirectTo('action=login');
+    $song = new \Models\Song();
+    $song->album_id = (int)$_GET['album_id'];
+    $song->title = $_POST['title'];
+    $song->duration = (float)$_POST['duration'];
+    $song->rating = (int)$_POST['rating'];
+    $song->save();
+    setFlash("Chanson ajoutée !");
+    redirectTo('action=songs&album_id=' . $_GET['album_id']);
 }
 else {
     header("HTTP/1.0 404 Not Found");
