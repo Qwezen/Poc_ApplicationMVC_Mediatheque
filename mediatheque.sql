@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 29 sep. 2025 à 00:09
+-- Généré le : lun. 29 sep. 2025 à 23:35
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -124,6 +124,15 @@ CREATE TABLE `songs` (
   `rating` tinyint(4) NOT NULL CHECK (`rating` between 0 and 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `songs`
+--
+
+INSERT INTO `songs` (`id`, `album_id`, `title`, `duration`, `rating`) VALUES
+(4, 9, 'les corons', 3, 5),
+(5, 4, 'Simpl/Basique', 5, 3),
+(6, 4, 'La Pluie', 3, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -182,7 +191,7 @@ ALTER TABLE `movies`
 --
 ALTER TABLE `songs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `album_id` (`album_id`);
+  ADD KEY `songs_ibfk_1` (`album_id`);
 
 --
 -- Index pour la table `users`
@@ -224,7 +233,7 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT pour la table `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `users`
@@ -258,7 +267,7 @@ ALTER TABLE `movies`
 -- Contraintes pour la table `songs`
 --
 ALTER TABLE `songs`
-  ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`media_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
