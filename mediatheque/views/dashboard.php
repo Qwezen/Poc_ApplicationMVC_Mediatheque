@@ -18,13 +18,13 @@ $base = dirname($_SERVER['PHP_SELF']);
 
 <body class="bg-gray-100 text-gray-800 font-semibold">
 
-<nav class="bg-blue-600 text-white shadow-md">
+<nav class="bg-blue-800 text-white shadow-md h-16">
   <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
     <h1 class="text-xl font-bold">Mediatheque</h1>
     <div>
       <?php if ($user): ?>
-        <span class="mr-4">Bienvenue <strong><?=htmlspecialchars($user['username'])?></strong></span>
-        <a href="?action=logout" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Se déconnecter</a>
+        <span class="mr-4 text-xl">Bienvenue <strong><?=htmlspecialchars($user['username'])?></strong></span>
+        <a href="?action=logout" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 text-l rounded">Se déconnecter</a>
       <?php else: ?>
         <a href="?action=login" class="px-3 py-1 hover:underline">Connexion</a>
         <a href="?action=register" class="ml-2 px-3 py-1 hover:underline">Inscription</a>
@@ -103,6 +103,10 @@ $base = dirname($_SERVER['PHP_SELF']);
             <td class="px-6 py-3 space-x-2">
               <a href="?action=show&id=<?= $m['id'] ?>" 
                  class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm">Voir</a>
+              <?php if ($m['type'] === 'album'): ?>
+                <a href="?action=songs&album_id=<?= $m['id'] ?>" 
+                class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded-lg text-sm">Chansons</a>
+              <?php endif; ?>
               <?php if (!empty($_SESSION['user_id'])): ?>
                 <?php if ($m['available']): ?>
                   <a href="?action=borrow&id=<?= $m['id'] ?>" 
@@ -138,7 +142,7 @@ $base = dirname($_SERVER['PHP_SELF']);
     <form method="post" action="?action=store" enctype="multipart/form-data"
           class="bg-white p-6 rounded shadow space-y-4">
       <div>
-        <label class="block font-medium">Type</label>
+        <label class="block font-medium mb-1">Type</label>
         <select name="type" class="border rounded px-3 py-2 w-full">
           <option value="book">Livre</option>
           <option value="movie">Film</option>
@@ -146,7 +150,7 @@ $base = dirname($_SERVER['PHP_SELF']);
         </select>
       </div>
       <div>
-        <label class="block font-medium">Titre</label>
+        <label class="block font-medium mb-1">Titre</label>
         <input name="title" required class="border rounded px-3 py-2 w-full">
       </div>
       <div>
