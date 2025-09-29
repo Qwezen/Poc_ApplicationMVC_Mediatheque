@@ -51,4 +51,21 @@ class Album extends Media
         $album['songs'] = $s->fetchAll();
         return $album;
     }
+
+   
+    public static function getAlbumWithSongs(int $id): ?array
+    {
+        $db = \Config\Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM media WHERE id = :id AND type = 'album'");
+        $stmt->execute([':id' => $id]);
+        $album = $stmt->fetch();
+        if (!$album) return null;
+
+        $stmt2 = $db->prepare("SELECT * FROM songs WHERE album_id = :id");
+        $stmt2->execute([':id' => $id]);
+        $album['songs'] = $stmt2->fetchAll();
+
+        return $album;
+    }
+
 }
