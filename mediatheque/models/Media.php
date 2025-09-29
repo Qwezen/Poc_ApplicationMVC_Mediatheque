@@ -26,6 +26,9 @@ abstract class Media
 
     /**
     * Constructeur : initialise la connexion à la base de données
+    * getInstance() permet de récupérer une instance partagée de la connexion à la base de données.
+    * Database::getInstance() appelle une méthode statique de la classe Database qui retourne une instance unique de PDO.
+    * Cela garantit qu’il n’y a qu’une seule connexion à la base de données partagée entre tous les objets.
     */
     public function __construct()
     {
